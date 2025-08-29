@@ -53,6 +53,18 @@
       ],
       "@/data/*": [
         "./src/data/*"
+      ],
+      "@/context/*": [
+        "./src/context/*"
+      ],
+      "@/services/*": [
+        "./src/services/*"
+      ],
+      "@/api/*": [
+        "./src/api/*"
+      ],
+      "@/lib/*": [
+        "./src/lib/*"
       ]
     }
   },

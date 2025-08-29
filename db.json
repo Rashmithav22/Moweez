@@ -1,0 +1,21 @@
+{
+  
+  
+
+  "users": [
+    {
+      "id": "4c4c",
+      "name": "rash",
+      "email": "rash@gmail.com",
+      "password": "R@$h2",
+      "avatar": "https://i.pravatar.cc/150?u=rash@gmail.com"
+    },
+    {
+      "id": "9b5b",
+      "name": "rashh",
+      "email": "rashmi@gamil.com",
+      "password": "R@$H22",
+      "avatar": "https://i.pravatar.cc/150?u=rashmi@gamil.com"
+    }
+  ]
+}

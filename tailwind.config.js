@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class', // Enable dark mode support
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,6 +10,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: '#1f2937',
+        accent: '#f43f5e',
+        darkText: '#fff',
+        lightText: '#000',
+      },
       // Custom breakpoints
       screens: {
         '4xs': '320px',
@@ -24,6 +31,12 @@ module.exports = {
         roboto: ['"Roboto"', 'sans-serif'],
       },
 
+      fontSize: {
+        'clamp-xl': 'clamp(2.5rem, 6vw, 4.5rem)', // heading
+        'clamp-md': 'clamp(1rem, 2vw, 1.5rem)',   // paragraph
+        'clamp-sm': 'clamp(0.875rem, 1.5vw, 1.125rem)',
+        'clamp-lg': 'clamp(2rem, 5vw, 3.5rem)',
+      },
       // Custom animations
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -62,6 +75,7 @@ module.exports = {
       },
     },
   },
+  
   plugins: [
     // Add any additional plugins here
   ],
@@ -72,3 +86,5 @@ module.exports = {
   // JIT mode for faster builds
   mode: 'jit',
 };
+
+

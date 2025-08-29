@@ -10,6 +10,7 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 100%;
+    transition: background-color 0.3s ease;
   }
 
   body {
@@ -17,6 +18,8 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-family: 'Inter', sans-serif;
+    transition: color 0.3s ease, background-color 0.3s ease;
   }
 
   /* Heading Styles */
@@ -70,3 +73,36 @@
     text-wrap: pretty;
   }
 }
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scrollLeft {
+  animation-name: scrollLeft;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes filmRoll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .animate-filmRoll {
+          animation: filmRoll 20s linear infinite;
+        }
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */

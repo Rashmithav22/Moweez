@@ -1,0 +1,12 @@
+{
+  "PUT_UNSPLASH_PHOTO_ID_HERE": {
+    "overview": "Custom overview for this movie.",
+    "releaseDate": "2023-11-02",
+    "genres": ["Drama", "Adventure"],
+    "rating": 7.8,
+    "cast": [
+      { "id": 1, "name": "Jane Doe", "character": "Lead" },
+      { "id": 2, "name": "John Doe", "character": "Friend" }
+    ]
+  }
+}

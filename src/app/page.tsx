@@ -1,9 +1,17 @@
-import MainLayout from '@/layouts/MainLayout';
+import HomeContent from '@/components/HomeContent';
+import AutoScrollingCarouselSection from '@/components/carousel/AutoScrollingCarouselSection';
+import PopularSlider from '@/components/explore/PopularSlider';
+
 
 export default function HomePage() {
   return (
-    <MainLayout>
-      <h1>Main</h1>
-    </MainLayout>
+    <main className="w-full overflow-hidden">
+      
+      <HomeContent />
+      <PopularSlider />
+      <AutoScrollingCarouselSection />
+      
+
+    </main>
   );
 }
