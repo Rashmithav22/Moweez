@@ -12,6 +12,7 @@ interface Movie {
   description?: string;
   videoSrc?: string;
   ratings?:number;
+  videos:string[];
 }
 
 interface WatchlistContextProps {

@@ -21,7 +21,6 @@ export interface Movie {
   alt_description?: string;
   urls?: { regular: string };
   videos: string[]; 
-  // ⬇️ New field for resume functionality
   resumeTime?: number; 
 
 

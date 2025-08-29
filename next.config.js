@@ -4,11 +4,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 const nextConfig = {
-  // Static export configuration
+  // Static export configuration (commented out for server-side rendering)
   // output: 'export',
   trailingSlash: false,
   images: {
     unoptimized: true, // Required for static export
+    domains: ['images.unsplash.com', 'i.pravatar.cc'],
   },
 
   // Performance optimizations
@@ -18,10 +19,9 @@ const nextConfig = {
 
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['lucide-react'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', 'react-icons'],
     // serverActions: true,
   },
-
 
   // Headers for better caching and security
   async headers() {
@@ -41,10 +41,23 @@ const nextConfig = {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin',
           },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
         ],
       },
       {
         source: '/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/(.*)',
         headers: [
           {
             key: 'Cache-Control',
@@ -66,6 +79,19 @@ const nextConfig = {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
             chunks: 'all',
+            priority: 20,
+          },
+          framer: {
+            test: /[\\/]node_modules[\\/](framer-motion)[\\/]/,
+            name: 'framer',
+            chunks: 'all',
+            priority: 30,
+          },
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
+            chunks: 'all',
+            priority: 40,
           },
         },
       };
@@ -78,6 +104,11 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: false,
   compress: true,
+  
+  // Environment variables for client-side
+  env: {
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+  },
 };
 
-module.exports = withBundleAnalyzer(nextConfig); 
+module.exports = withBundleAnalyzer(nextConfig);

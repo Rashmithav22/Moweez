@@ -69,7 +69,7 @@ export default function PopularSlider() {
     <div className="w-full max-w-6xl mx-auto px-4">
       <h2 className="text-white text-2xl font-semibold mb-4">Popular Movies</h2>
 
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden">ccess 
         {/* Left arrow */}
         <button
           onClick={scrollLeft}

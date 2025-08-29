@@ -1,25 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { getPhotoAsMovie } from '@/lib/unsplash';
+import { useRouter } from 'next/router';
+import { fetchUnsplashImages } from '@/lib/unsplash';
 import type { Movie } from '@/types/Movie';
+import Link from 'next/link';
 
 
 export default function DetailsPage() {
-  const { id } = useParams();
+  const router = useRouter();
+  const { id } = router.query;
   const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       if (!id) return;
-      const m = await getPhotoAsMovie(id);
-      setMovie(m);
+      // Ensure id is a string (Next.js query params can be string or string[])
+      const idString = Array.isArray(id) ? id[0] : id;
+      const images = await fetchUnsplashImages(idString, 1);
+      if (images.length > 0) {
+        const image = images[0];
+        const movieData: Movie = {
+          id: image.id,
+          title: image.alt_description || 'Untitled',
+          posterUrl: image.urls.small,
+          description: image.description || image.alt_description || '',
+          videos: [],
+        };
+        setMovie(movieData);
+      }
       setLoading(false);
     })();
   }, [id]);
 
   if (loading) return <main className="p-6">Loading…</main>;
-  if (!movie)   return <main className="p-6">Not found. <Link to="/" className="underline">Home</Link></main>;
+  if (!movie)   return <main className="p-6">Not found. <Link href="/" className="underline">Home</Link></main>;
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-6 grid md:grid-cols-[2fr,1fr] gap-6">
@@ -40,11 +54,16 @@ export default function DetailsPage() {
           <div>
             <h2 className="text-xl font-semibold mb-2">Cast</h2>
             <ul className="space-y-1 opacity-90">
-              {movie.cast.map(c => <li key={c.id}>{c.name}{c.character ? ` — ${c.character}` : ''}</li>)}
+              {movie.cast.map((c, i) => (
+  <li key={i}>
+    {c.name}{c.character ? ` — ${c.character}` : ''}
+  </li>
+))}
+
             </ul>
           </div>
         )}
-        <Link to="/" className="underline opacity-80">Back to Home</Link>
+        <Link href="/" className="underline opacity-80">Back to Home</Link>
       </aside>
     </main>
   );

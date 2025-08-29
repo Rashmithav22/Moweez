@@ -8,7 +8,8 @@ export type User = {
   avatar?: string;
 };
 
-const BASE_URL = "http://localhost:5000"; // Adjust to your API base URL
+// Use environment variable for base URL, fallback to localhost for development
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export async function signup(user: User): Promise<{ success: boolean; user?: User; error?: string }> {
   try {
@@ -41,5 +42,6 @@ export async function login(email: string, password: string): Promise<{ success:
     }
   } catch (error) {
     return { success: false, error: "Failed to login" };
+    
   }
 }

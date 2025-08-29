@@ -294,6 +294,9 @@ export default function ExplorePanel({
           genre: genres[gIdx] || 'Action',
           language: languages[lIdx] || 'English',
           videoSrc: localVideos[index % localVideos.length],
+          videos: [], // Required by Movie interface
+          alt_description: img.alt_description || cat, // Required by Movie interface
+          urls: { regular: img.urls?.regular || img.urls?.small || '' } // Required by Movie interface
         } as Movie;
       });
     }

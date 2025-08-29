@@ -52,6 +52,7 @@ export default function ExplorePage() {
       description: img.description || img.alt_description || '',
       genre,
       language,
+      videos: [], // Add empty videos array to satisfy Movie interface
     };
   });
 

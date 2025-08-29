@@ -179,7 +179,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
           className="absolute top-2 right-2 text-white z-10"
           onClick={(e) => {
             e.stopPropagation();
-            toggleWatchlist({ id, title, posterUrl, description, videoSrc });
+            toggleWatchlist({ id, title, posterUrl, description, videoSrc,videos });
           }}
         >
           {inWatchlist ? <FaHeart className="text-red-500" /> : <FaRegHeart />}

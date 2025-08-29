@@ -28,7 +28,10 @@ export default function ProfilePage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    updateUser({ name, email });
+    const formData = new FormData();
+    formData.append('name', name);
+    // Note: email is not updated as it's the user identifier
+    updateUser(formData);
     alert('Profile updated successfully!');
   };
 

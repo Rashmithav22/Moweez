@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 interface NavbarProps {
   onCategoryChange: (category: string) => void;
   selectedCategory: string;
+  onSidebarToggle: () => void;
 }
 
 export default function Navbar({ onCategoryChange, selectedCategory }: NavbarProps) {
